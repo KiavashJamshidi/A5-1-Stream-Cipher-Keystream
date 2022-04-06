@@ -2,7 +2,7 @@ import keystream_gen
 
 def getNewKeyByte(register19, register22, register23):
     newKeyByte = 0
-    for i in range(0, 8):
+    for i in range(8):
         newKeyBit, register19, register22, register23 = keystream_gen.generateNewKeyBit(register19, register22, register23)
         newKeyByte = newKeyByte * 2 + newKeyBit
     return newKeyByte
