@@ -1,4 +1,6 @@
 import keystream_gen
+import os
+import glob
 
 def getNewKeyByte(register19, register22, register23):
     newKeyByte = 0
@@ -8,8 +10,13 @@ def getNewKeyByte(register19, register22, register23):
     return newKeyByte
 
 if __name__ == '__main__':
-    file = open("input.txt", "rb")
-    outFile = open("input.txt.enc", "wb")
+    fileFormat = glob.glob("input.*")[0].split('.')[1]
+    inFileName = "input." + fileFormat
+    file = open(inFileName, "rb")
+
+    outFileName = "input." + fileFormat + ".enc"
+    outFile = open(outFileName, "wb")
+
     key = keystream_gen.getKey()
     register19, register22, register23 = keystream_gen.loadRegisters(key)
 
